@@ -1032,12 +1032,18 @@ archive log list
 exit;
 ----
 
-In addition, supplemental logging must be enabled for captured tables or the database in order for data changes to capture the _before_ state of changed database rows.
-The following illustrates how to configure this on a specific table, which is the ideal choice to minimize the amount of information captured in the Oracle redo logs.
+In addition, supplemental logging must be enabled for captured tables or the database in order for data changes to capture the _before_ state of changed database rows. The following illustrates how to configure loggin on a specific table, which is the ideal choice to minimize the amount of information captured in the Oracle redo logs.
 
 [source,indent=0]
 ----
 ALTER TABLE inventory.customers ADD SUPPLEMENTAL LOG DATA (ALL) COLUMNS;
+----
+
+At a minimum, the following supplemental logging must be configured for the database.
+
+[source,indent=0]
+----
+ALTER DATABASE ADD SUPPLEMENTAL LOG DATA;
 ----
 
 === Creating users for the connector
